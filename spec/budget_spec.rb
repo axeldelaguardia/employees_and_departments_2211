@@ -35,10 +35,12 @@ describe Budget do
 		end
 
 		describe '#add_department' do
-			budget.add_department(customer_service)
-			budget.add_department(sales)
+			it 'adds department to collection of departments' do
+				budget.add_department(customer_service)
+				budget.add_department(sales)
 
-			expect(budget.departments).to eq([customer_service, sales])
+				expect(budget.departments).to eq([customer_service, sales])
+			end
 		end
 	end
 end
