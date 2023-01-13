@@ -42,6 +42,6 @@ class Budget
 	end
 
 	def all_employee_expenses
-		departments.group_by{|dept| dept.employee_expenses}.keys.reduce(:merge)
+		departments.group_by{|dept| dept.emp_expenses}.keys.reduce(:merge)
 	end
 end
