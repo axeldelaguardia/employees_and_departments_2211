@@ -92,7 +92,7 @@ describe Budget do
 
 	context 'iteration 4' do
 		describe '#department_expense_details' do
-			it 'returns a hash with employees from all departments and their expenses' do
+			it 'returns a hash with department expense details' do
 				budget.add_department(customer_service)
 				budget.add_department(sales)
 
@@ -117,6 +117,25 @@ describe Budget do
 				}
 
 			  expect(budget.department_expense_details).to eq(expected)
+			end
+		end
+
+		describe 'all_employee_expenses' do
+			it 'returns a hash with employees as keys and expenses as values' do
+				budget.add_department(customer_service)
+				budget.add_department(sales)
+
+				customer_service.expense(200, megan)
+				sales.expense(50, aaron)
+
+				expected = {
+					aaron => 150,
+					lisa => 300,
+					bobbi => 100,
+					megan => 225
+				}
+
+				expect(budget.all_employee_expenses).to eq(expected)
 			end
 		end
 	end
