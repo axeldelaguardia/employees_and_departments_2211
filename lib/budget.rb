@@ -29,4 +29,15 @@ class Budget
 		end
 		salaries
 	end
+
+	def department_expense_details
+		employee_expenses = {}
+		departments.each do |dept| 
+			employee_expenses[dept] = {
+				total: dept.expenses,
+				by_employee: dept.employee_expenses
+			}
+		end
+		employee_expenses
+	end
 end
