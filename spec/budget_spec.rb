@@ -93,9 +93,12 @@ describe Budget do
 	context 'iteration 4' do
 		describe '#all_employee_expenses' do
 			it 'returns a hash with employees from all departments and their expenses' do
-
+				budget.add_department(customer_service)
+				budget.add_department(sales)
+				
 				customer_service.expense(200, megan)
 				sales.expense(50, aaron)
+
 				expected = {
 					sales => {
 						:total => 450,
