@@ -7,7 +7,7 @@ describe Budget do
 	let(:megan) {Employee.new({name: "Megan Ralston", age: "40", salary: "135000"})}
 	let(:aaron) {Employee.new({name: "Aaron Tanaka", age: "25", salary: "90000"})}
 	let(:lisa) {Employee.new({name: "Lisa Robinson", age: "43", salary: "120000"})}
-	let(:budget) {Budget.new}
+	let(:budget) {Budget.new('2022')}
 
 	before do
 		customer_service.hire(bobbi)
@@ -30,6 +30,7 @@ describe Budget do
 			end
 
 			it 'has attributes' do
+				expect(budget.year).to eq(2022)
 				expect(budget.departments).to eq([])
 			end
 		end
