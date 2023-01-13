@@ -48,7 +48,7 @@ describe Budget do
 			it 'returns a hash with departments and expenses under a specific amount' do
 				budget.add_department(customer_service)
 				budget.add_department(sales)
-				
+
 				expected = {customer_service => 125, sales => 400}
 
 				expect(budget.dept_with_expenses_under(500)).to eq(expected)
@@ -62,5 +62,29 @@ describe Budget do
 			end
 		end
 
+		describe '#employee_salaries' do
+			budget.add_department(customer_service)
+			budget.add_department(sales)
+
+			expected = {
+				bobbi.salary =>  100000,
+				megan.salary => 135000,
+				aaron.salary => 90000,
+				lisa.salary => 120000
+			}
+
+			expect(budget.employee_salaries).to eq(expected)
+
+			lisa.give_raise(5000)
+
+			expected = {
+				bobbi.salary =>  100000,
+				megan.salary => 135000,
+				aaron.salary => 90000,
+				lisa.salary => 125000
+			}
+
+			expect(budget.employee_salaries).to eq(expected)
+		end
 	end
 end
