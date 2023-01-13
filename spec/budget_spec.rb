@@ -129,10 +129,10 @@ describe Budget do
 				sales.expense(50, aaron)
 
 				expected = {
-					aaron => 150,
-					lisa => 300,
-					bobbi => 100,
-					megan => 225
+					aaron => [100, 50],
+					lisa => [300],
+					bobbi => [100],
+					megan => [25, 200]
 				}
 
 				expect(budget.all_employee_expenses).to eq(expected)
