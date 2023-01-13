@@ -33,5 +33,12 @@ describe Budget do
 				expect(budget.departments).to eq([])
 			end
 		end
+
+		describe '#add_department' do
+			budget.add_department(customer_service)
+			budget.add_department(sales)
+
+			expect(budget.departments).to eq([customer_service, sales])
+		end
 	end
 end
