@@ -1,7 +1,9 @@
 class Budget
-	attr_reader :departments
+	attr_reader :departments,
+							:year
 
-	def initialize
+	def initialize(year)
+		@year = year.to_i
 		@departments = []
 	end
 
