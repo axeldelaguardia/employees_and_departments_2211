@@ -37,7 +37,7 @@ describe Department do
 
 	describe '#employee_expenses' do
 		it 'returns a hash with employee name as key and employee expenses as value' do
-			expect(customer_service.employee_expenses).to eq({bobbi => 0, aaron => 0})
+			expect(customer_service.employee_expenses).to eq({})
 
 			customer_service.expense(100, bobbi)
 			customer_service.expense(25, aaron)
@@ -51,7 +51,7 @@ describe Department do
 			expected = {bobbi => 100, aaron => 75}
 
 			expect(customer_service.expenses).to eq(175)
-			expect(customer_service.eemployee_expenses).to eq(expected)
+			expect(customer_service.employee_expenses).to eq(expected)
 		end
 	end
 end
