@@ -19,7 +19,7 @@ describe Budget do
 		customer_service.expense(100)
 		customer_service.expense(25)
 
-		sales.expense(450)
+		sales.expense(100)
 		sales.expense(300)
 	end
 
@@ -43,5 +43,24 @@ describe Budget do
 				expect(budget.departments).to eq([customer_service, sales])
 			end
 		end
+
+		describe '#dept_with_expenses_under' do
+			it 'returns a hash with departments and expenses under a specific amount' do
+				budget.add_department(customer_service)
+				budget.add_department(sales)
+				
+				expected = {customer_service => 125, sales => 400}
+
+				expect(budget.dept_with_expenses_under(500)).to eq(expected)
+
+				customer_service.expense(25)
+				sales.expense(400)
+
+				expected = {customer_service => 150}
+
+				expect(budget.dept_with_expenses_under(500)).to eq(expected)
+			end
+		end
+
 	end
 end
