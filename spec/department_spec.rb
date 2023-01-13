@@ -54,4 +54,19 @@ describe Department do
 			expect(customer_service.employee_expenses).to eq(expected)
 		end
 	end
+
+	describe '#record_employee_expenses' do
+		it 'adds expenses to a list' do
+			customer_service.expense(100, bobbi)
+			customer_service.expense(25, aaron)
+			customer_service.expense(50, aaron)
+
+			expected = {
+				bobbi => [100],
+				aaron => [25, 50]
+			}
+
+			expect(customer_service.emp_expenses).to eq(expected)
+		end
+	end
 end
