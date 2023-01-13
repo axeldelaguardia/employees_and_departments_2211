@@ -19,4 +19,14 @@ class Budget
 		end
 		returned_departments
 	end
+
+	def employee_salaries
+		salaries = Hash.new(0)
+		@departments.each do |department|
+			department.employees.each do |employee|
+				salaries[employee] = employee.salary
+			end
+		end
+		salaries
+	end
 end
