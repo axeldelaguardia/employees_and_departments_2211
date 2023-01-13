@@ -16,11 +16,11 @@ describe Budget do
 		sales.hire(aaron)
 		sales.hire(lisa)
 
-		customer_service.expense(100)
-		customer_service.expense(25)
+		customer_service.expense(100, bobbi)
+		customer_service.expense(25, megan)
 
-		sales.expense(100)
-		sales.expense(300)
+		sales.expense(100, aaron)
+		sales.expense(300, lisa)
 	end
 
 	context 'iteration 3' do
@@ -53,8 +53,8 @@ describe Budget do
 
 				expect(budget.dept_with_expenses_under(500)).to eq(expected)
 
-				customer_service.expense(25)
-				sales.expense(400)
+				customer_service.expense(25, bobbi)
+				sales.expense(400, aaron)
 
 				expected = {customer_service => 150}
 
