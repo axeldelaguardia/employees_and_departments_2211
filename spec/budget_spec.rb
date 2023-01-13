@@ -89,4 +89,32 @@ describe Budget do
 			end
 		end
 	end
+
+	context 'iteration 4' do
+		describe '#all_employee_expenses' do
+			customer_service.expense(200, megan)
+			sales.expense(50, aaron)
+
+			it 'returns a hash with employees from all departments and their expenses' do
+				expected = {
+					sales => {
+						:total => 450,
+						:by_employee => {
+							aaron => 150,
+							lisa => 300
+						}
+					},
+					customer_service => {
+						:total => 325,
+						:by_employee => {
+							bobbi => 100,
+							megan => 225
+						}
+					},
+				}
+
+			  expect(budget.all_employee_expenses).to eq(expected)
+			end
+		end
+	end
 end
