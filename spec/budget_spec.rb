@@ -68,10 +68,10 @@ describe Budget do
 				budget.add_department(sales)
 
 				expected = {
-					bobbi.salary =>  100000,
-					megan.salary => 135000,
-					aaron.salary => 90000,
-					lisa.salary => 120000
+					bobbi =>  100000,
+					megan => 135000,
+					aaron => 90000,
+					lisa => 120000
 				}
 
 				expect(budget.employee_salaries).to eq(expected)
@@ -79,10 +79,10 @@ describe Budget do
 				lisa.give_raise(5000)
 
 				expected = {
-					bobbi.salary =>  100000,
-					megan.salary => 135000,
-					aaron.salary => 90000,
-					lisa.salary => 125000
+					bobbi =>  100000,
+					megan => 135000,
+					aaron => 90000,
+					lisa => 125000
 				}
 
 				expect(budget.employee_salaries).to eq(expected)
