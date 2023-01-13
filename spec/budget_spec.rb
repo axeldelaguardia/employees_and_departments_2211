@@ -16,11 +16,11 @@ describe Budget do
 		sales.hire(aaron)
 		sales.hire(lisa)
 
-		customer_service.expense(100)
-		customer_service.expense(25)
+		customer_service.expense(100, bobbi)
+		customer_service.expense(25, megan)
 
-		sales.expense(100)
-		sales.expense(300)
+		sales.expense(100, aaron)
+		sales.expense(300, lisa)
 	end
 
 	context 'iteration 3' do
@@ -53,8 +53,8 @@ describe Budget do
 
 				expect(budget.dept_with_expenses_under(500)).to eq(expected)
 
-				customer_service.expense(25)
-				sales.expense(400)
+				customer_service.expense(25, bobbi)
+				sales.expense(400, aaron)
 
 				expected = {customer_service => 150}
 
@@ -86,6 +86,56 @@ describe Budget do
 				}
 
 				expect(budget.employee_salaries).to eq(expected)
+			end
+		end
+	end
+
+	context 'iteration 4' do
+		describe '#department_expense_details' do
+			it 'returns a hash with department expense details' do
+				budget.add_department(customer_service)
+				budget.add_department(sales)
+
+				customer_service.expense(200, megan)
+				sales.expense(50, aaron)
+
+				expected = {
+					sales => {
+						:total => 450,
+						:by_employee => {
+							aaron => 150,
+							lisa => 300
+						}
+					},
+					customer_service => {
+						:total => 325,
+						:by_employee => {
+							bobbi => 100,
+							megan => 225
+						}
+					},
+				}
+
+			  expect(budget.department_expense_details).to eq(expected)
+			end
+		end
+
+		describe 'all_employee_expenses' do
+			it 'returns a hash with employees as keys and expenses as values' do
+				budget.add_department(customer_service)
+				budget.add_department(sales)
+
+				customer_service.expense(200, megan)
+				sales.expense(50, aaron)
+
+				expected = {
+					aaron => [100, 50],
+					lisa => [300],
+					bobbi => [100],
+					megan => [25, 200]
+				}
+
+				expect(budget.all_employee_expenses).to eq(expected)
 			end
 		end
 	end

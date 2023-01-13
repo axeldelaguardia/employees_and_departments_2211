@@ -29,4 +29,19 @@ class Budget
 		end
 		salaries
 	end
+
+	def department_expense_details
+		employee_expenses = {}
+		departments.each do |dept| 
+			employee_expenses[dept] = {
+				total: dept.expenses,
+				by_employee: dept.employee_expenses
+			}
+		end
+		employee_expenses
+	end
+
+	def all_employee_expenses
+		departments.group_by{|dept| dept.emp_expenses}.keys.reduce(:merge)
+	end
 end
